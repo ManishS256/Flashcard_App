@@ -1,0 +1,21 @@
+#stl {
+  width: 1200px;
+  height:575px;
+  border-radius: 45px;
+  padding: 20px;
+  text-align:center;
+  color:white;
+}
+
+#stl1 {
+  text-align:center;
+}
+
+#collapse1{
+overflow-y:scroll;
+height:250px;
+
+#ie {
+  position: absolute;
+  top: 200px; left: 450px;
+}

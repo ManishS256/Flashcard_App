@@ -1,0 +1,50 @@
+#stl {
+  width: 1200px;
+  height:575px;
+  border-radius: 45px;
+  padding: 20px;
+  text-align:center;
+  color:white;
+}
+
+#stl1 {
+  text-align:center;
+  width: 200px;
+  height:250px;
+  border-radius: 15px;
+  padding: 20px;
+  color: #3333ff;
+  position: absolute;
+  top: 200px; left: 450px;
+  background-color: #e69500;
+  text-shadow: 1px 1px 1px #3333ff;
+}
+
+.stl2 {
+  position:relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-wrap: break-word;
+}
+
+.stl3 {
+  text-align:left;
+  width: 700px;
+  height:500px;
+  border-radius: 15px;
+  padding: 20px;
+  color: #669900;
+  position: absolute;
+  top: 255px; left: 670px;
+}
+
+#stll{
+  position: absolute;
+  top: 465px; left: 512px;
+}
+
+
+#collapse1{
+overflow-y:scroll;
+height:250px;

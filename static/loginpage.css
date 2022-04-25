@@ -1,0 +1,12 @@
+#login {
+  width: 700px;
+  height:500px;
+  border-radius: 25px;
+  border: 1px solid #bfbfbf;
+  padding: 20px;
+  text-align:center
+}
+
+.form-label{
+  text-align:left
+}

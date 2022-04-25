@@ -1,0 +1,3649 @@
+_type: export
+__export_format: 4
+__export_date: 2021-11-27T17:17:12.737Z
+__export_source: insomnia.desktop.app:v2021.6.0
+resources:
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde139840508ca04
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266848981
+    created: 1636266848981
+    url: "{{ base_url }}/api/student/{{ student_id }}/course/{{ course_id }}"
+    name: /api/student/{student_id}/course/{course_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266848981
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_f206df576a0542ff85be9d7ccde13984
+    parentId: null
+    modified: 1636266858400
+    created: 1636266858400
+    name: Week Six Assignment Problem Statement 1.0.0
+    description: >
+      <div>In this assignment, you have to create a RESTful API, database models
+      using Flask-RESTful  and     flask-SQLAlchemy. We list below instructions
+      to be followed in  preparing and submitting the solution. <h3>General
+      instructions:</h3> <ol> 
+        <li> Submit a single .zip file containing all your submission files and folders, the name of which should be "roll_number.zip". E.g.: 21f1000000.zip </li>
+        <li>The folder structure inside the zip file should be as follows:</li>
+        <ol type = "I">
+          <li>The Python program must be written inside a file named "app.py". This file must reside inside the root folder.</li>
+          <li> The database file named "api_database.sqlite3". You are not required to submit this database file with your submission.</li>
+        </ol>
+      <li> You should not keep any code inside the scope of the condition " if __name__ == '__main__' " except run() call. </li> <li> Allowed Python packages: flask, flask-sqlalchemy, flask-restful, and any standard Python3 package.</li> <li> The database URI must be the same as: app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///api_database.sqlite3'.</li> <li> You should not use create_all() call in your program to create a database.</li> </ol> </div>
+
+      <h3> Course Table Schema </h3>  <table>
+        <thead>
+          <th>Column Name</th>
+          <th>Column Type</th>
+          <th>Constraints</th>
+        </thead>
+        <tbody>
+        <tr>
+          <td>course_id</td>
+          <td>Integer</td>
+          <td>Primary Key, Auto Increment</td>
+        </tr>
+        <tr>
+          <td>course_name</td>
+          <td>String</td>
+          <td>Not Null</td>
+        </tr>
+        <tr>
+          <td>course_code</td>
+          <td>String</td>
+          <td>Unique, Not Null</td>
+        </tr>      
+        <tr>
+          <td>course_description</td>
+          <td>String</td>
+          <td></td>
+        </tr>         
+      </tbody> </table>
+
+      <h3> Student Table Schema </h3>  <table>
+        <thead>
+          <th>Column Name</th>
+          <th>Column Type</th>
+          <th>Constraints</th>
+        </thead>
+        <tbody>
+        <tr>
+          <td>student_id</td>
+          <td>Integer</td>
+          <td>Primary Key, Auto Increment</td>
+        </tr>
+        <tr>
+          <td>roll_number</td>
+          <td>String</td>
+          <td>Unique, Not Null</td>
+        </tr>
+        <tr>
+          <td>first_name</td>
+          <td>String</td>
+          <td>Not Null</td>
+        </tr>      
+        <tr>
+          <td>last_name</td>
+          <td>String</td>
+          <td></td>
+        </tr>         
+      </tbody> </table>
+
+
+      <h3> Enrollment Table Schema </h3>  <table>
+        <thead>
+          <th>Column Name</th>
+          <th>Column Type</th>
+          <th>Constraints</th>
+        </thead>
+        <tbody>
+        <tr>
+          <td>enrollment_id</td>
+          <td>Integer</td>
+          <td>Primary Key, Auto Increment</td>
+        </tr>
+        <tr>
+          <td>student_id</td>
+          <td>Integer</td>
+          <td>Foreign Key (student.student_id), Not Null</td>
+        </tr>
+        <tr>
+          <td>course_id</td>
+          <td>Integer</td>
+          <td>Foreign Key (course.course_id), Not Null</td>
+      </tbody> </table>
+
+      <h3> Error Codes </h3>  <table>
+        <thead>
+          <th>Resource</th>
+          <th>Error Code</th>
+          <th>Message</th>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Course</td>
+          <td>COURSE001</td>
+          <td>Course Name is required and should be string.</td>
+        </tr>
+        <tr>
+          <td>Course</td>
+          <td>COURSE002</td>
+          <td>Course Code is required and should be string.</td>
+        </tr>
+        <tr>
+          <td>Course</td>
+          <td>COURSE003</td>
+          <td> Course Description should be string.</td>
+        </tr>
+        <tr>
+          <td>Student</td>
+          <td>STUDENT001</td>
+          <td>Roll Number required and should be String </td>
+        </tr>
+        <tr>
+          <td>Student</td>
+          <td>STUDENT002</td>
+          <td>First Name is required and should be String </td>
+        </tr>
+        <tr>
+          <td>Student</td>
+          <td>STUDENT003</td>
+          <td>Last Name is String </td>
+        </tr>
+        <tr>
+          <td>Enrollment</td>
+          <td>ENROLLMENT001</td>
+          <td>Course does not exist</td>
+        </tr>
+        <tr>
+          <td>Enrollment</td>
+          <td>ENROLLMENT002</td>
+          <td>Student does not exist.</td>
+        </tr>  
+        <tr>
+          <td>Enrollment</td>
+          <td>ENROLLMENT003</td>
+          <td>Course Code is required and should be string.</td>
+        </tr> 
+      </tbody> </table>
+    scope: collection
+    _type: workspace
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984385c973f
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266848985
+    created: 1636266848985
+    url: "{{ base_url }}/api/student/{{ student_id }}/course/{{ course_id }}"
+    name: /api/student/{student_id}/course/{course_id}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266848985
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984949d6a77
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266848991
+    created: 1636266848991
+    url: "{{ base_url }}/api/student/{{ student_id }}/course"
+    name: /api/student/{student_id}/course
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "course_id": 12345
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1636266848991
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984e2d16114
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266848995
+    created: 1636266848995
+    url: "{{ base_url }}/api/student/{{ student_id }}/course"
+    name: /api/student/{student_id}/course
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266848995
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984cf97b068
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266848998
+    created: 1636266848998
+    url: "{{ base_url }}/api/student/{{ student_id }}/course"
+    name: /api/student/{student_id}/course
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266848998
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde1398454310e51
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849002
+    created: 1636266849002
+    url: "{{ base_url }}/api/student"
+    name: /api/student
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "first_name": "Narendra",
+          "last_name": "Mishra",
+          "roll_number": "MA19M010"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1636266849002
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde139841d611e54
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849005
+    created: 1636266849005
+    url: "{{ base_url }}/api/student"
+    name: /api/student
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266849005
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde1398468f52712
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849010
+    created: 1636266849010
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266849010
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984e2cfe2b9
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849013
+    created: 1636266849013
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "first_name": "Narendra",
+          "last_name": "Mishra",
+          "roll_number": "MA19M010"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1636266849013
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984e191caf9
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849017
+    created: 1636266849017
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266849017
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde1398426640e9e
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849020
+    created: 1636266849020
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266849020
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984d8a71518
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849025
+    created: 1636266849025
+    url: "{{ base_url }}/api/course"
+    name: /api/course
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "course_name": "Maths1",
+          "course_code": "MA101",
+          "course_description": "Course Description Example"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1636266849025
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984dbe8c226
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849029
+    created: 1636266849029
+    url: "{{ base_url }}/api/course"
+    name: /api/course
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266849029
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde1398446de9ca0
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849032
+    created: 1636266849032
+    url: "{{ base_url }}/api/course/{{ course_id }}"
+    name: /api/course/{course_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266849032
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984d99984d0
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636268175368
+    created: 1636266849035
+    url: "{{ base_url }}/api/course/{{ course_id }}"
+    name: /api/course/{course_id}
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "course_name": "Maths1",
+          "course_code": "MA101",
+          "course_description": "Course Description Example"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_d10f5b744e804469b753920c2f2863fe
+    authentication: {}
+    metaSortKey: -1636266849035
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984d7f37c74
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636268293448
+    created: 1636266849039
+    url: "{{ base_url }}/api/course/301"
+    name: /api/course/{course_id}
+    description: ""
+    method: PUT
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266849039
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_f206df576a0542ff85be9d7ccde13984f912de14
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849044
+    created: 1636266849044
+    url: "{{ base_url }}/api/course/{{ course_id }}"
+    name: /api/course/{course_id}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636266849044
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db70508ca04
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475127
+    created: 1636268475127
+    url: "{{ base_url }}/api/student/{{ student_id }}/course/{{ course_id }}"
+    name: /api/student/{student_id}/course/{course_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475127
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    parentId: null
+    modified: 1638032771714
+    created: 1636268482608
+    name: APPLICATION DEVELOPMENT 1 - FINAL PROJECT 1.0.0
+    description: >
+      <h4> <div>Name: Manish S</div> <div>Roll.no: 21F1005330</div> <div>E-Mail
+      ID: 21f1005330@student.onlinedegree.iitm.ac.in</div> </h4>
+    scope: design
+    _type: workspace
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7385c973f
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475132
+    created: 1636268475132
+    url: "{{ base_url }}/api/student/{{ student_id }}/course/{{ course_id }}"
+    name: /api/student/{student_id}/course/{course_id}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475132
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7949d6a77
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475135
+    created: 1636268475135
+    url: "{{ base_url }}/api/student/{{ student_id }}/course"
+    name: /api/student/{student_id}/course
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "course_id": 12345
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1636268475135
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7e2d16114
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475138
+    created: 1636268475138
+    url: "{{ base_url }}/api/student/{{ student_id }}/course"
+    name: /api/student/{student_id}/course
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475138
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7cf97b068
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475141
+    created: 1636268475141
+    url: "{{ base_url }}/api/student/{{ student_id }}/course"
+    name: /api/student/{student_id}/course
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475141
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db754310e51
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475144
+    created: 1636268475144
+    url: "{{ base_url }}/api/student"
+    name: /api/student
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "first_name": "Narendra",
+          "last_name": "Mishra",
+          "roll_number": "MA19M010"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1636268475144
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db71d611e54
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475148
+    created: 1636268475148
+    url: "{{ base_url }}/api/student"
+    name: /api/student
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475148
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db768f52712
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475152
+    created: 1636268475152
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475152
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7e2cfe2b9
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475155
+    created: 1636268475155
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "first_name": "Narendra",
+          "last_name": "Mishra",
+          "roll_number": "MA19M010"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1636268475155
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7e191caf9
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475158
+    created: 1636268475158
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475158
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db726640e9e
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475161
+    created: 1636268475161
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475161
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7d8a71518
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475165
+    created: 1636268475165
+    url: "{{ base_url }}/api/course"
+    name: /api/course
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "course_name": "Maths1",
+          "course_code": "MA101",
+          "course_description": "Course Description Example"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1636268475165
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7dbe8c226
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475169
+    created: 1636268475169
+    url: "{{ base_url }}/api/course"
+    name: /api/course
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475169
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db746de9ca0
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475172
+    created: 1636268475172
+    url: "{{ base_url }}/api/course/{{ course_id }}"
+    name: /api/course/{course_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475172
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7d99984d0
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475175
+    created: 1636268475175
+    url: "{{ base_url }}/api/course/{{ course_id }}"
+    name: /api/course/{course_id}
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "course_name": "Maths1",
+          "course_code": "MA101",
+          "course_description": "Course Description Example"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1636268475175
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7d7f37c74
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475178
+    created: 1636268475178
+    url: "{{ base_url }}/api/course/{{ course_id }}"
+    name: /api/course/{course_id}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475178
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7f912de14
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268475182
+    created: 1636268475182
+    url: "{{ base_url }}/api/course/{{ course_id }}"
+    name: /api/course/{course_id}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1636268475182
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7d4cade85
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032770792
+    created: 1638032770792
+    url: "{{ base_url }}/api/decks/play/addscore/{{ user_name }}/{{ deck_name }}/{{
+      score }}"
+    name: /api/decks/play/addscore/{user_name}/{deck_name}/{score}
+    description: ""
+    method: PUT
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032770792
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db77a91f35a
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032770909
+    created: 1638032770909
+    url: "{{ base_url }}/api/decks/play/addscore/{{ user_name }}/{{ deck_name }}/{{
+      score }}"
+    name: /api/decks/play/addscore/{user_name}/{deck_name}/{score}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032770909
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7d3b1d2f9
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771017
+    created: 1638032771017
+    url: "{{ base_url }}/api/decks/play/{{ user_name }}/{{ deck_name }}"
+    name: /api/decks/play/{user_name}/{deck_name}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771017
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db794b2b8f8
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771149
+    created: 1638032771149
+    url: "{{ base_url }}/api/decks/play/{{ user_name }}/{{ deck_name }}"
+    name: /api/decks/play/{user_name}/{deck_name}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771149
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db713622267
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771216
+    created: 1638032771216
+    url: "{{ base_url }}/api/decks/deletecard/{{ user_name }}/{{ deck_name }}/{{
+      card_name }}"
+    name: /api/decks/deletecard/{user_name}/{deck_name}/{card_name}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771216
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7434aa623
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771220
+    created: 1638032771220
+    url: "{{ base_url }}/api/decks/deletecard/{{ user_name }}/{{ deck_name }}/{{
+      card_name }}"
+    name: /api/decks/deletecard/{user_name}/{deck_name}/{card_name}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771220
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7277605fe
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771223
+    created: 1638032771223
+    url: "{{ base_url }}/api/editcard/{{ user_name }}/{{ deck_name }}/{{ card_name
+      }}/{{ newcard_name }}/{{ newcard_remarks }}"
+    name: /api/editcard/{user_name}/{deck_name}/{card_name}/{newcard_name}/{newcard_remarks}
+    description: ""
+    method: PUT
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771223
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7d3475206
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771226
+    created: 1638032771226
+    url: "{{ base_url }}/api/editcard/{{ user_name }}/{{ deck_name }}/{{ card_name
+      }}/{{ newcard_name }}/{{ newcard_remarks }}"
+    name: /api/editcard/{user_name}/{deck_name}/{card_name}/{newcard_name}/{newcard_remarks}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771226
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db730e8d80b
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771230
+    created: 1638032771230
+    url: "{{ base_url }}/api/decks/addcard/{{ user_name }}/{{ deck_name }}"
+    name: /api/decks/addcard/{user_name}/{deck_name}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771230
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7e49ae0fb
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771233
+    created: 1638032771233
+    url: "{{ base_url }}/api/decks/addcard/{{ user_name }}/{{ deck_name }}"
+    name: /api/decks/addcard/{user_name}/{deck_name}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771233
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db76d038c3b
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771236
+    created: 1638032771236
+    url: "{{ base_url }}/api/decks/addcard/add/{{ user_name }}/{{ deck_name }}/{{
+      card_name }}/{{ card_remarks }}"
+    name: /api/decks/addcard/add/{user_name}/{deck_name}/{card_name}/{card_remarks}
+    description: ""
+    method: PUT
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771236
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db769c07ef5
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771240
+    created: 1638032771240
+    url: "{{ base_url }}/api/decks/addcard/add/{{ user_name }}/{{ deck_name }}/{{
+      card_name }}/{{ card_remarks }}"
+    name: /api/decks/addcard/add/{user_name}/{deck_name}/{card_name}/{card_remarks}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771240
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7cd29bf38
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771243
+    created: 1638032771243
+    url: "{{ base_url }}/api/decks/renamedeck/{{ user_name }}/{{ deck_name }}/{{
+      newdeck_name }}"
+    name: /api/decks/renamedeck/{user_name}/{deck_name}/{newdeck_name}
+    description: ""
+    method: PUT
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771243
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7d5c78b5a
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771248
+    created: 1638032771248
+    url: "{{ base_url }}/api/decks/renamedeck/{{ user_name }}/{{ deck_name }}/{{
+      newdeck_name }}"
+    name: /api/decks/renamedeck/{user_name}/{deck_name}/{newdeck_name}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771248
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7f7f83017
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771312
+    created: 1638032771312
+    url: "{{ base_url }}/api/decks/deletedeck/{{ user_name }}/{{ deck_name }}"
+    name: /api/decks/deletedeck/{user_name}/{deck_name}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771312
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7c52632a0
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771388
+    created: 1638032771388
+    url: "{{ base_url }}/api/decks/deletedeck/{{ user_name }}/{{ deck_name }}"
+    name: /api/decks/deletedeck/{user_name}/{deck_name}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771388
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7b80c3198
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771435
+    created: 1638032771435
+    url: "{{ base_url }}/api/decks/adddeck/{{ user_name }}/{{ deck_name }}"
+    name: /api/decks/adddeck/{user_name}/{deck_name}
+    description: ""
+    method: PUT
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771435
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db70f22d4dc
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771569
+    created: 1638032771569
+    url: "{{ base_url }}/api/decks/adddeck/{{ user_name }}/{{ deck_name }}"
+    name: /api/decks/adddeck/{user_name}/{deck_name}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771569
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7f8305094
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771629
+    created: 1638032771629
+    url: "{{ base_url }}/api/decks/{{ user_name }}"
+    name: /api/decks/{user_name}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771630
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db744c699f7
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771633
+    created: 1638032771633
+    url: "{{ base_url }}/api/decks/{{ user_name }}"
+    name: /api/decks/{user_name}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771633
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db70b6bdcb6
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771636
+    created: 1638032771636
+    url: "{{ base_url }}/api/login/{{ user_name }}/{{ password }}"
+    name: /api/login/{user_name}/{password}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771637
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db763ea95e1
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771651
+    created: 1638032771651
+    url: "{{ base_url }}/api/login/{{ user_name }}/{{ password }}"
+    name: /api/login/{user_name}/{password}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771651
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db714c3a6fe
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771655
+    created: 1638032771655
+    url: "{{ base_url }}/api/signup/{{ user_name }}/{{ password }}"
+    name: /api/signup/{user_name}/{password}
+    description: ""
+    method: PUT
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771655
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_wrk_dcb639b5bff64ae2937f12f9e20d0db7aabf53ca
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771659
+    created: 1638032771659
+    url: "{{ base_url }}/api/signup/{{ user_name }}/{{ password }}"
+    name: /api/signup/{user_name}/{password}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638032771659
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_e35a7b00e01883e9004b1390a0facbbef3a89bfa
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266849055
+    created: 1636266849047
+    name: Base environment
+    data:
+      base_url: "{{ scheme }}://{{ host }}{{ base_path }}"
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1636266849047
+    _type: environment
+  - _id: jar_e35a7b00e01883e9004b1390a0facbbef3a89bfa
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266860944
+    created: 1636266860944
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_6d66cc35dcf64b22ab242f4a5856997c
+    parentId: wrk_f206df576a0542ff85be9d7ccde13984
+    modified: 1636266858480
+    created: 1636266858403
+    fileName: Week Six Assignment Problem Statement 1.0.0
+    contents: "openapi: 3.0.0\r
+
+      info:\r
+
+      \  title: Week Six Assignment Problem Statement\r
+
+      \  description: >\r
+
+      \    <div>In this assignment, you have to create a RESTful API,
+      database models using Flask-RESTful  and     flask-SQLAlchemy. We list
+      below instructions to be followed in \r
+
+      \    preparing and submitting the solution.\r
+
+      \    <h3>General instructions:</h3>\r
+
+      \    <ol> \r
+
+      \      <li> Submit a single .zip file containing all your submission
+      files and folders, the name of which should be \"roll_number.zip\". E.g.:
+      21f1000000.zip </li>\r
+
+      \      <li>The folder structure inside the zip file should be as
+      follows:</li>\r
+
+      \      <ol type = \"I\">\r
+
+      \        <li>The Python program must be written inside a file named
+      \"app.py\". This file must reside inside the root folder.</li>\r
+
+      \        <li> The database file named \"api_database.sqlite3\". You
+      are not required to submit this database file with your submission.</li>\r
+
+      \      </ol>\r
+
+      \    <li> You should not keep any code inside the scope of the
+      condition \" if __name__ == '__main__' \" except run() call. </li>\r
+
+      \    <li> Allowed Python packages: flask, flask-sqlalchemy,
+      flask-restful, and any standard Python3 package.</li>\r
+
+      \    <li> The database URI must be the same as:
+      app.config['SQLALCHEMY_DATABASE_URI'] =
+      'sqlite:///api_database.sqlite3'.</li>\r
+
+      \    <li> You should not use create_all() call in your program to
+      create a database.</li>\r
+
+      \    </ol>\r
+
+      \    </div>\r
+
+      \r
+
+      \    <h3> Course Table Schema </h3> \r
+
+      \    <table>\r
+
+      \      <thead>\r
+
+      \        <th>Column Name</th>\r
+
+      \        <th>Column Type</th>\r
+
+      \        <th>Constraints</th>\r
+
+      \      </thead>\r
+
+      \      <tbody>\r
+
+      \      <tr>\r
+
+      \        <td>course_id</td>\r
+
+      \        <td>Integer</td>\r
+
+      \        <td>Primary Key, Auto Increment</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>course_name</td>\r
+
+      \        <td>String</td>\r
+
+      \        <td>Not Null</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>course_code</td>\r
+
+      \        <td>String</td>\r
+
+      \        <td>Unique, Not Null</td>\r
+
+      \      </tr>      \r
+
+      \      <tr>\r
+
+      \        <td>course_description</td>\r
+
+      \        <td>String</td>\r
+
+      \        <td></td>\r
+
+      \      </tr>         \r
+
+      \    </tbody>\r
+
+      \    </table>\r
+
+      \r
+
+      \    <h3> Student Table Schema </h3> \r
+
+      \    <table>\r
+
+      \      <thead>\r
+
+      \        <th>Column Name</th>\r
+
+      \        <th>Column Type</th>\r
+
+      \        <th>Constraints</th>\r
+
+      \      </thead>\r
+
+      \      <tbody>\r
+
+      \      <tr>\r
+
+      \        <td>student_id</td>\r
+
+      \        <td>Integer</td>\r
+
+      \        <td>Primary Key, Auto Increment</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>roll_number</td>\r
+
+      \        <td>String</td>\r
+
+      \        <td>Unique, Not Null</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>first_name</td>\r
+
+      \        <td>String</td>\r
+
+      \        <td>Not Null</td>\r
+
+      \      </tr>      \r
+
+      \      <tr>\r
+
+      \        <td>last_name</td>\r
+
+      \        <td>String</td>\r
+
+      \        <td></td>\r
+
+      \      </tr>         \r
+
+      \    </tbody>\r
+
+      \    </table>\r
+
+      \r
+
+      \r
+
+      \    <h3> Enrollment Table Schema </h3> \r
+
+      \    <table>\r
+
+      \      <thead>\r
+
+      \        <th>Column Name</th>\r
+
+      \        <th>Column Type</th>\r
+
+      \        <th>Constraints</th>\r
+
+      \      </thead>\r
+
+      \      <tbody>\r
+
+      \      <tr>\r
+
+      \        <td>enrollment_id</td>\r
+
+      \        <td>Integer</td>\r
+
+      \        <td>Primary Key, Auto Increment</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>student_id</td>\r
+
+      \        <td>Integer</td>\r
+
+      \        <td>Foreign Key (student.student_id), Not Null</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>course_id</td>\r
+
+      \        <td>Integer</td>\r
+
+      \        <td>Foreign Key (course.course_id), Not Null</td>\r
+
+      \    </tbody>\r
+
+      \    </table>\r
+
+      \r
+
+      \    <h3> Error Codes </h3> \r
+
+      \    <table>\r
+
+      \      <thead>\r
+
+      \        <th>Resource</th>\r
+
+      \        <th>Error Code</th>\r
+
+      \        <th>Message</th>\r
+
+      \      </thead>\r
+
+      \      <tbody>\r
+
+      \      <tr>\r
+
+      \        <td>Course</td>\r
+
+      \        <td>COURSE001</td>\r
+
+      \        <td>Course Name is required and should be string.</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>Course</td>\r
+
+      \        <td>COURSE002</td>\r
+
+      \        <td>Course Code is required and should be string.</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>Course</td>\r
+
+      \        <td>COURSE003</td>\r
+
+      \        <td> Course Description should be string.</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>Student</td>\r
+
+      \        <td>STUDENT001</td>\r
+
+      \        <td>Roll Number required and should be String </td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>Student</td>\r
+
+      \        <td>STUDENT002</td>\r
+
+      \        <td>First Name is required and should be String </td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>Student</td>\r
+
+      \        <td>STUDENT003</td>\r
+
+      \        <td>Last Name is String </td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>Enrollment</td>\r
+
+      \        <td>ENROLLMENT001</td>\r
+
+      \        <td>Course does not exist</td>\r
+
+      \      </tr>\r
+
+      \      <tr>\r
+
+      \        <td>Enrollment</td>\r
+
+      \        <td>ENROLLMENT002</td>\r
+
+      \        <td>Student does not exist.</td>\r
+
+      \      </tr>  \r
+
+      \      <tr>\r
+
+      \        <td>Enrollment</td>\r
+
+      \        <td>ENROLLMENT003</td>\r
+
+      \        <td>Course Code is required and should be string.</td>\r
+
+      \      </tr> \r
+
+      \    </tbody>\r
+
+      \    </table>\r
+
+      \r
+
+      \  version: 1.0.0\r
+
+      servers:\r
+
+      \  - url: http://127.0.0.1:5000/\r
+
+      paths:\r
+
+      \  /api/course/{course_id}:\r
+
+      \    description: End point to read, update and delete a course
+      resource with course_id = courseId.\r
+
+      \    get:\r
+
+      \      description: Operation to Read course resource.\r
+
+      \      parameters:\r
+
+      \        - in: path\r
+
+      \          name: course_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 201\r
+
+      \      responses:\r
+
+      \        '200':\r
+
+      \          description: Request Successful\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                title: course object\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  course_id:\r
+
+      \                    type: integer\r
+
+      \                    example: 201\r
+
+      \                  course_name:\r
+
+      \                    type: string\r
+
+      \                    example: Maths1\r
+
+      \                  course_code:\r
+
+      \                    type: string\r
+
+      \                    example: MA101\r
+
+      \                  course_description:\r
+
+      \                    type: string\r
+
+      \                    example: Course Description Example\r
+
+      \        '500':\r
+
+      \          description: Internal Server Error\r
+
+      \        '404':\r
+
+      \          description: Course not found\r
+
+      \r
+
+      \    put:\r
+
+      \      description: Operation to update the course resource.\r
+
+      \      parameters:\r
+
+      \        - in: path\r
+
+      \          name: course_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 201\r
+
+      \      requestBody:\r
+
+      \        content:\r
+
+      \          application/json:\r
+
+      \            schema:\r
+
+      \              type: object\r
+
+      \              properties:\r
+
+      \                course_name:\r
+
+      \                  type: string\r
+
+      \                  example: Maths1\r
+
+      \                course_code:\r
+
+      \                  type: string\r
+
+      \                  example: MA101\r
+
+      \                course_description:\r
+
+      \                  type: string\r
+
+      \                  example: Course Description Example\r
+
+      \      responses:\r
+
+      \        '200':\r
+
+      \          description: Successfuly updated\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  course_id:\r
+
+      \                    type: integer\r
+
+      \                    example: 201\r
+
+      \                  course_name:\r
+
+      \                    type: string\r
+
+      \                    example: Maths1\r
+
+      \                  course_code:\r
+
+      \                    type: string\r
+
+      \                    example: MA101\r
+
+      \                  course_description:\r
+
+      \                    type: string\r
+
+      \                    example: Course Description Example\r
+
+      \        '404':\r
+
+      \          description: Course not found\r
+
+      \        '500':\r
+
+      \          description: Internal Server Error\r
+
+      \        '400':\r
+
+      \          description: Bad request\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  error_code:\r
+
+      \                    type: string\r
+
+      \                  error_message:\r
+
+      \                    type: string\r
+
+      \    delete:\r
+
+      \      description: Operation to delete the course resource\r
+
+      \      parameters:\r
+
+      \        - in: path\r
+
+      \          name: course_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 201\r
+
+      \      responses:\r
+
+      \        '200':\r
+
+      \          description: Successfully Deleted\r
+
+      \        '404':\r
+
+      \          description: Course not found\r
+
+      \        '500':\r
+
+      \          description: Intenal Server Error\r
+
+      \r
+
+      \  /api/course:\r
+
+      \    description: End point to create course resource\r
+
+      \    post:\r
+
+      \      description: Operation to create the course resource\r
+
+      \      requestBody:\r
+
+      \        content:\r
+
+      \          application/json:\r
+
+      \            schema:\r
+
+      \              type: object\r
+
+      \              properties:\r
+
+      \                course_name:\r
+
+      \                  type: string\r
+
+      \                  example: Maths1\r
+
+      \                course_code:\r
+
+      \                  type: string\r
+
+      \                  example: MA101\r
+
+      \                course_description:\r
+
+      \                  type: string\r
+
+      \                  example: Course Description Example\r
+
+      \      responses:\r
+
+      \        '201':\r
+
+      \          description: Successfully Created\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  course_id:\r
+
+      \                    type: integer\r
+
+      \                    example: 201\r
+
+      \                  course_name:\r
+
+      \                    type: string\r
+
+      \                    example: Maths1\r
+
+      \                  course_code:\r
+
+      \                    type: string\r
+
+      \                    example: MA101\r
+
+      \                  course_description:\r
+
+      \                    type: string\r
+
+      \                    example: Course Description Example\r
+
+      \        '409':\r
+
+      \          description: course_code already exist\r
+
+      \        '500':\r
+
+      \          description: Internal Server Error\r
+
+      \        '400':\r
+
+      \          description: Bad request\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  error_code:\r
+
+      \                    type: string\r
+
+      \                  error_message:\r
+
+      \                    type: string\r
+
+      \  /api/student/{student_id}:\r
+
+      \    description: Url to read, update and delete the student
+      resource.\r
+
+      \    get:\r
+
+      \      description: Operation to read student resource\r
+
+      \      parameters:\r
+
+      \        - in: path\r
+
+      \          name: student_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 201\r
+
+      \      responses:\r
+
+      \        '200':\r
+
+      \          description: Request Successful\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                title: student object\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  student_id:\r
+
+      \                    type: integer\r
+
+      \                    example: 101\r
+
+      \                  first_name:\r
+
+      \                    type: string\r
+
+      \                    example: Narendra\r
+
+      \                  last_name:\r
+
+      \                    type: string\r
+
+      \                    example: Mishra\r
+
+      \                  roll_number:\r
+
+      \                    type: string\r
+
+      \                    example: MA19M010\r
+
+      \        '500':\r
+
+      \          description: Internal server error\r
+
+      \        '404':\r
+
+      \          description: Student not found\r
+
+      \r
+
+      \    put:\r
+
+      \      description: Operation to update the student resource\r
+
+      \      parameters:\r
+
+      \        - in: path\r
+
+      \          name: student_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 101\r
+
+      \      requestBody:\r
+
+      \        content:\r
+
+      \          application/json:\r
+
+      \            schema:\r
+
+      \              type: object\r
+
+      \              properties:\r
+
+      \                first_name:\r
+
+      \                  type: string\r
+
+      \                  example: Narendra\r
+
+      \                last_name:\r
+
+      \                  type: string\r
+
+      \                  example: Mishra\r
+
+      \                roll_number:\r
+
+      \                  type: string\r
+
+      \                  example: MA19M010\r
+
+      \      responses:\r
+
+      \        '200':\r
+
+      \          description: Successfully updated\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  student_id:\r
+
+      \                    type: integer\r
+
+      \                    example: 101\r
+
+      \                  first_name:\r
+
+      \                    type: string\r
+
+      \                    example: Narendra\r
+
+      \                  last_name:\r
+
+      \                    type: string\r
+
+      \                    example: Mishra\r
+
+      \                  roll_number:\r
+
+      \                    type: string\r
+
+      \                    example: MA19M010\r
+
+      \        '404':\r
+
+      \          description: Student not found\r
+
+      \        '500':\r
+
+      \          description: Internal Server Error\r
+
+      \        '400':\r
+
+      \          description: Bad request\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  error_code:\r
+
+      \                    type: string\r
+
+      \                  error_message:\r
+
+      \                    type: string\r
+
+      \    delete:\r
+
+      \      description: Operation to delete the course resource\r
+
+      \      parameters:\r
+
+      \        - in: path\r
+
+      \          name: student_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 101\r
+
+      \      responses:\r
+
+      \        '200':\r
+
+      \          description: Successfully Deleted\r
+
+      \        '500':\r
+
+      \          description: Internal Server Error\r
+
+      \        '404':\r
+
+      \          description: Student not found\r
+
+      \r
+
+      \  /api/student:\r
+
+      \    description: Url to create student resource\r
+
+      \    post:\r
+
+      \      description: Operation to create the student resource\r
+
+      \      requestBody:\r
+
+      \        content:\r
+
+      \          application/json:\r
+
+      \            schema:\r
+
+      \              type: object\r
+
+      \              properties:\r
+
+      \                first_name:\r
+
+      \                  type: string\r
+
+      \                  example: Narendra\r
+
+      \                last_name:\r
+
+      \                  type: string\r
+
+      \                  example: Mishra\r
+
+      \                roll_number:\r
+
+      \                  type: string\r
+
+      \                  example: MA19M010\r
+
+      \      responses:\r
+
+      \        '201':\r
+
+      \          description: Successfully Created\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                title: student object\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  student_id:\r
+
+      \                    type: integer\r
+
+      \                    example: 101\r
+
+      \                  first_name:\r
+
+      \                    type: string\r
+
+      \                    example: Narendra\r
+
+      \                  last_name:\r
+
+      \                    type: string\r
+
+      \                    example: Mishra\r
+
+      \                  roll_number:\r
+
+      \                    type: string\r
+
+      \                    example: MA19M010\r
+
+      \        '409':\r
+
+      \          description: Student already exist\r
+
+      \        '500':\r
+
+      \          description: Internal Server Error\r
+
+      \        '400':\r
+
+      \          description: Bad request\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  error_code:\r
+
+      \                    type: string\r
+
+      \                  error_message:\r
+
+      \                    type: string\r
+
+      \r
+
+      \  /api/student/{student_id}/course:\r
+
+      \    description: Url to get the the list of enrollments a student
+      with student_id is enrolled in.\r
+
+      \    get:\r
+
+      \      description: URL to get the list of enrollments, the student
+      is enrolled in. This path belongs to the Enrollment table.\r
+
+      \      parameters:\r
+
+      \        - in: path\r
+
+      \          name: student_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 101\r
+
+      \      responses:\r
+
+      \        '200':\r
+
+      \          description: Request Successful\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: array\r
+
+      \                items:\r
+
+      \                  properties:\r
+
+      \                    enrollment_id:\r
+
+      \                      type: integer\r
+
+      \                      example: 10\r
+
+      \                    student_id:\r
+
+      \                      type: integer\r
+
+      \                      example: 101\r
+
+      \                    course_id:\r
+
+      \                      type: integer\r
+
+      \                      example: 201\r
+
+      \        '400':\r
+
+      \          description: Invalid Student Id\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  error_code:\r
+
+      \                    type: string\r
+
+      \                  error_message:\r
+
+      \                    type: string\r
+
+      \        '404':\r
+
+      \          description: Student is not enrolled in any course\r
+
+      \        '500':\r
+
+      \          description: Internal Server Error\r
+
+      \r
+
+      \    post:\r
+
+      \      description: Add student enrollment aka enroll the student to
+      the course. This path belongs to the Enrollment table.\r
+
+      \      parameters:\r
+
+      \        - in: path\r
+
+      \          name: student_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 101\r
+
+      \      requestBody:\r
+
+      \        content:\r
+
+      \          application/json:\r
+
+      \            schema:\r
+
+      \              type: object\r
+
+      \              properties:\r
+
+      \                course_id:\r
+
+      \                  type: integer\r
+
+      \                  example: 12345\r
+
+      \      responses:\r
+
+      \        '201':\r
+
+      \          description: Enrollment successful\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: array\r
+
+      \                items:\r
+
+      \                  properties:\r
+
+      \                    enrollment_id:\r
+
+      \                      type: integer\r
+
+      \                      example: 10\r
+
+      \                    student_id:\r
+
+      \                      type: integer\r
+
+      \                      example: 101\r
+
+      \                    course_id:\r
+
+      \                      type: integer\r
+
+      \                      example: 201\r
+
+      \        '404':\r
+
+      \          description: Student not found\r
+
+      \        '500':\r
+
+      \          description: Internal Server Error\r
+
+      \        '400':\r
+
+      \          description: Bad request\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  error_code:\r
+
+      \                    type: string\r
+
+      \                  error_message:\r
+
+      \                    type: string\r
+
+      \r
+
+      \  /api/student/{student_id}/course/{course_id}:\r
+
+      \    description: URL to delete enrollment of a student in a course.
+      This path belongs to the Enrollment table.\r
+
+      \    delete:\r
+
+      \      description: URL to delete enrollment of the student in the
+      course. This path belongs to the Enrollment table.\r
+
+      \      parameters:\r
+
+      \        - in: path\r
+
+      \          name: student_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 101\r
+
+      \        - in: path\r
+
+      \          name: course_id\r
+
+      \          required: true\r
+
+      \          schema:\r
+
+      \            type: integer\r
+
+      \            example: 10\r
+
+      \      responses:\r
+
+      \        '200':\r
+
+      \          description: Successfully deleted\r
+
+      \        '400':\r
+
+      \          description: Invalid Student Id or Course Id.\r
+
+      \          content:\r
+
+      \            application/json:\r
+
+      \              schema:\r
+
+      \                type: object\r
+
+      \                properties:\r
+
+      \                  error_code:\r
+
+      \                    type: string\r
+
+      \                  error_message:\r
+
+      \                    type: string\r
+
+      \        '404':\r
+
+      \          description: Enrollment for the student not found\r
+
+      \        '500':\r
+
+      \          description: Internal Server Error"
+    contentType: yaml
+    _type: api_spec
+  - _id: env_env_e35a7b00e01883e9004b1390a0facbbef3a89bfa_sub
+    parentId: env_e35a7b00e01883e9004b1390a0facbbef3a89bfa
+    modified: 1636266849051
+    created: 1636266849051
+    name: OpenAPI env
+    data:
+      scheme: http
+      base_path: ""
+      host: 127.0.0.1:5000
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1636266849051
+    _type: environment
+  - _id: env_ba0bd9b3d9d6cd10d65de325efbfe92c5cd55e0b
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638032771669
+    created: 1636268475186
+    name: Base environment
+    data:
+      base_url: "{{ scheme }}://{{ host }}{{ base_path }}"
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1636268475186
+    _type: environment
+  - _id: jar_ba0bd9b3d9d6cd10d65de325efbfe92c5cd55e0b
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1636268491915
+    created: 1636268491915
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_70467ac6a7c44b4997d674173e7fa833
+    parentId: wrk_dcb639b5bff64ae2937f12f9e20d0db7
+    modified: 1638033408736
+    created: 1636268482612
+    fileName: 21f1005330_AD1_FinalProject
+    contents: "openapi: 3.0.0
+
+      info:
+
+      \  title: APPLICATION DEVELOPMENT 1 - FINAL PROJECT
+
+      \  description: >
+
+      \    <h4>
+
+      \    <div>Name: Manish S</div>
+
+      \    <div>Roll.no: 21F1005330</div>
+
+      \    <div>E-Mail ID:
+      21f1005330@student.onlinedegree.iitm.ac.in</div>
+
+      \    </h4>
+
+      \  version: 1.0.0
+
+      servers:
+
+      \  - url: http://127.0.0.1:5000/
+
+      paths:
+
+      \  /api/signup/{user_name}/{password}:
+
+      \    description: End point to add new user.
+
+      \    put:
+
+      \      description: Operation to add new user.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: password
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'pass123'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 1 - User Added Successfully<br>
+
+      \                       2 - User Already Exist<br>
+
+      \                       3 - Username or Password Invalid<br>
+
+      \                       4 - INTERNAL SERVER ERROR
+
+      \          content:
+
+      \            integer:
+
+      \              schema:
+
+      \                type: integer
+
+      \                example: 0
+
+      \               \ 
+
+      \  /api/login/{user_name}/{password}:
+
+      \    description: End point to login user.
+
+      \    get:
+
+      \      description: Login a User.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: password
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'pass123'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 1 - Logged in Successfully<br>
+
+      \                       2 - Username and Password not matching<br>
+
+      \                       3 - Username not exist<br>
+
+      \                       4 - INTERNAL SERVER ERROR
+
+      \          content:
+
+      \            integer:
+
+      \              schema:
+
+      \                type: integer
+
+      \                example: 0
+
+
+      \  /api/decks/{user_name}:
+
+      \    description: To fetch all deck of a user.
+
+      \    get:
+
+      \      description: Fetch deck of a user.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: List of list of decks of an user.
+
+      \          content:
+
+      \            array:
+
+      \              schema:
+
+      \                type: array
+
+      \                example: [[\"user1\",\"animal\",\"27/11/2021
+      24:00:00\",10]]
+
+      \        '500':
+
+      \          description: INTERNAL SERVER ERROR
+
+
+      \               \ 
+
+      \  /api/decks/adddeck/{user_name}/{deck_name}:
+
+      \    description: To add a new deck.
+
+      \    put:
+
+      \      description: Operation to add new deck.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: deck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'deck1'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 1 - Deck added Successfully<br>
+
+      \                       2 - Deck name already used<br>
+
+      \                       3 - INTERNAL SERVER ERROR
+
+      \          content:
+
+      \            integer:
+
+      \              schema:
+
+      \                type: integer
+
+      \                example: 0
+
+
+      \  /api/decks/deletedeck/{user_name}/{deck_name}:
+
+      \    description: To delete a deck.
+
+      \    delete:
+
+      \      description: Operation to delete a deck.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: deck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'deck1'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 1 - Deck deleted Successfully<br>
+
+      \                       2 - INTERNAL SERVER ERROR
+
+      \          content:
+
+      \            integer:
+
+      \              schema:
+
+      \                type: integer
+
+      \                example: 0\ 
+
+      \               \ 
+
+      \  /api/decks/renamedeck/{user_name}/{deck_name}/{newdeck_name}:
+
+      \    description: To rename a deck.
+
+      \    put:
+
+      \      description: Operation to rename a deck.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: deck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'deck1'
+
+      \        - in: path
+
+      \          name: newdeck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'newdeck_name'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 1 - Deck renamed Successfully<br>
+
+      \                       2 - Deck name already used<br>
+
+      \                       3 - INTERNAL SERVER ERROR
+
+      \          content:
+
+      \            integer:
+
+      \              schema:
+
+      \                type: integer
+
+      \                example: 0
+
+      \               \ 
+
+      \ 
+      /api/decks/addcard/add/{user_name}/{deck_name}/{card_name}/{card_remarks}:
+
+      \    description: To add a card
+
+      \    put:
+
+      \      description: Operation to add a card.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: deck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'deck1'
+
+      \        - in: path
+
+      \          name: card_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'card1'
+
+      \        - in: path
+
+      \          name: card_remarks
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'card1remarks'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 1 - Card added Successfully<br>
+
+      \                       0 - Card name already used<br>
+
+      \          content:
+
+      \            integer:
+
+      \              schema:
+
+      \                type: integer
+
+      \                example: 0
+
+      \        '500':
+
+      \          description: INTERNAL SERVER ERROR
+
+      \                   \ 
+
+      \  /api/decks/addcard/{user_name}/{deck_name}:
+
+      \    description: To get all cards
+
+      \    get:
+
+      \      description: Operation to get all cards.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: deck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'deck1'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: List of list of cards of a deck.
+
+      \          content:
+
+      \            array:
+
+      \              schema:
+
+      \                type: array
+
+      \                example: [[\"user1\",\"animal\",\"Crow\",\"Bird\"]]
+
+      \        '500':
+
+      \          description: INTERNAL SERVER ERROR
+
+      \                   \ 
+
+      \ 
+      /api/editcard/{user_name}/{deck_name}/{card_name}/{newcard_name}/{newcard\
+      _remarks}:
+
+      \    description: To edit a card
+
+      \    put:
+
+      \      description: Operation to edit a card.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: deck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'deck1'
+
+      \        - in: path
+
+      \          name: card_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'card1'
+
+      \        - in: path
+
+      \          name: newcard_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'newcard1'
+
+      \        - in: path
+
+      \          name: newcard_remarks
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'newcardremarks'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 1 - Card edited Successfully
+
+      \          content:
+
+      \            integer:
+
+      \              schema:
+
+      \                type: integer
+
+      \                example: 0
+
+      \        '500':
+
+      \          description: INTERNAL SERVER ERROR
+
+
+      \  /api/decks/deletecard/{user_name}/{deck_name}/{card_name}:
+
+      \    description: To delete a card
+
+      \    delete:
+
+      \      description: Operation to delete a card.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: deck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'deck1'
+
+      \        - in: path
+
+      \          name: card_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'card1'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 1 - Card deleted Successfully
+
+      \          content:
+
+      \            integer:
+
+      \              schema:
+
+      \                type: integer
+
+      \                example: 0
+
+      \        '500':
+
+      \          description: INTERNAL SERVER ERROR
+
+      \         \ 
+
+      \  /api/decks/play/{user_name}/{deck_name}:
+
+      \    description: To delete a card
+
+      \    get:
+
+      \      description: Operation to delete a card.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: deck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'deck1'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 0 - No card in deck
+
+      \                       array - One or more cards in deck and
+      fetched a random card.
+
+      \          content:
+
+      \            array:
+
+      \              schema:
+
+      \                type: array
+
+      \                example: [\"Crow\",\"Bird\"]
+
+      \        '500':
+
+      \          description: INTERNAL SERVER ERROR
+
+      \         \ 
+
+      \  /api/decks/play/addscore/{user_name}/{deck_name}/{score}:
+
+      \    description: To add score for a deck.
+
+      \    put:
+
+      \      description: Operation to add score for a deck.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'user1'
+
+      \        - in: path
+
+      \          name: deck_name
+
+      \          required: true
+
+      \          schema:
+
+      \            type: string
+
+      \            example: 'deck1'
+
+      \        - in: path
+
+      \          name: score
+
+      \          required: true
+
+      \          schema:
+
+      \            type: integer
+
+      \            example: 2
+
+      \      responses:
+
+      \        '200':
+
+      \          description: 1 - Score added successfully
+
+      \          content:
+
+      \            integer:
+
+      \              schema:
+
+      \                type: integer
+
+      \                example: 0
+
+      \        '500':
+
+      \          description: ENTERED DECK_NAME DOES NOT EXIST OR INTERNAL
+      SERVER ERROR
+
+      \          "
+    contentType: yaml
+    _type: api_spec
+  - _id: env_env_ba0bd9b3d9d6cd10d65de325efbfe92c5cd55e0b_sub
+    parentId: env_ba0bd9b3d9d6cd10d65de325efbfe92c5cd55e0b
+    modified: 1638032771664
+    created: 1636268475189
+    name: OpenAPI env
+    data:
+      scheme: http
+      base_path: ""
+      host: 127.0.0.1:5000
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1636268475189
+    _type: environment
